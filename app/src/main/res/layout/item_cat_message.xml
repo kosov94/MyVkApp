@@ -5,4 +5,5 @@
            android:minHeight="400dp"
            android:scaleType="centerCrop"
            tools:src="@tools:sample/avatars"
-           android:layout_height="wrap_content"/>
+           android:layout_height="wrap_content"
+           android:layout_margin="6dp"/>

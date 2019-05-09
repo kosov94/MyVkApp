@@ -3,14 +3,19 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_margin="6dp"
+              android:layout_marginTop="3dp"
+              android:layout_marginBottom="3dp">
 
     <TextView
             android:id="@+id/itemPostMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            tools:text="@tools:sample/lorem[100]"/>
+            tools:text="@tools:sample/lorem[100]"
+            android:layout_margin="6dp"/>
 
     <ImageView
             android:id="@+id/itemPostImage"
@@ -18,6 +23,7 @@
             android:layout_height="wrap_content"
             android:minHeight="300dp"
             android:scaleType="centerCrop"
-            tools:src="@tools:sample/avatars"/>
+            tools:src="@tools:sample/avatars"
+            android:layout_marginHorizontal="2dp"/>
 
 </LinearLayout>
