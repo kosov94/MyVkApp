@@ -35,5 +35,9 @@ class ProfileViewPresenter : MvpPresenter<ProfileView>() {
         App.INCTANCE.router.newRootScreen(Screen.AuthViewScreen())
     }
 
+    fun profileEdit(){
+        App.INCTANCE.router.navigateTo(Screen.ProfileEditScreen())
+    }
+
 
 }

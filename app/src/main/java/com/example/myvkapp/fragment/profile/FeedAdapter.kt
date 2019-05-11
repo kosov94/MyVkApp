@@ -10,13 +10,16 @@ import com.example.myvkapp.common.loadImage
 import com.example.myvkapp.fragment.profile.message.BaseMessage
 import com.example.myvkapp.fragment.profile.message.CatMessage
 import com.example.myvkapp.fragment.profile.message.PostMessage
+import com.example.myvkapp.fragment.profile.message.TextMessage
 import kotlinx.android.synthetic.main.item_post_message.view.*
+import kotlinx.android.synthetic.main.item_text_message.view.*
 import java.lang.IllegalArgumentException
 
 class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
         const val POST_MESSAGE = 1
         const val CAT_MESSAGE = 2
+        const val TEXT_MESSAGE = 3
     }
 
     private val items: MutableList<BaseMessage> = mutableListOf()
@@ -38,12 +41,22 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             )
         )
 
+        TEXT_MESSAGE -> TextHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_text_message,
+                parent,
+                false
+            )
+        )
+
         else -> throw IllegalArgumentException("viewType $viewType not found")
     }
 
     override fun getItemViewType(position: Int): Int = when (items[position]) {
         is PostMessage -> POST_MESSAGE
         is CatMessage -> CAT_MESSAGE
+        is TextMessage -> TEXT_MESSAGE
+
         else -> throw IllegalArgumentException("${items[position].javaClass} not found")
     }
 
@@ -53,6 +66,7 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when (holder) {
             is PostMessageHolder -> holder.bind(items[position] as PostMessage)
             is CatHolder -> holder.bind(items[position] as CatMessage)
+            is TextHolder -> holder.bind(items[position] as TextMessage)
         }
     }
 
@@ -76,6 +90,12 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class CatHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(data: CatMessage) {
             (itemView as ImageView).loadImage(data.image)
+        }
+    }
+
+    inner class TextHolder(view: View): RecyclerView.ViewHolder(view){
+        fun bind(data: TextMessage){
+            itemView.itemTextMessage.text = data.message
         }
     }
 }

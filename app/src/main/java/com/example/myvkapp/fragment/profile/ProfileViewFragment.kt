@@ -43,14 +43,15 @@ class ProfileViewFragment : BaseFragment(R.layout.fragment_profile_view), Profil
         profileViewToolbar.inflateMenu(R.menu.menu_profile_view)
         profileViewToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.action_profile_edit -> {
-                    TODO("Navigate to profile edit")
-                }
-
+                R.id.action_profile_edit -> presenter.profileEdit()
                 R.id.action_logout -> presenter.logout()
             }
 
             true
         }
+    }
+
+    override fun showAvatar(image: String) {
+
     }
 }

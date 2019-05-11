@@ -7,4 +7,5 @@ import java.util.*
 interface ProfileView : MvpView {
     fun showProfile(firstName: String, birthday: String, city: String)
     fun showFeed(items: List<BaseMessage>)
+    fun showAvatar(image: String)
 }

@@ -1,6 +1,6 @@
 package com.example.myvkapp.fragment.profile.message
 
-class CatMessage(
+class TextMessage(
     id: Int,
-    val image: String
-) : BaseMessage(id)
+    val message: String
+): BaseMessage(id)
