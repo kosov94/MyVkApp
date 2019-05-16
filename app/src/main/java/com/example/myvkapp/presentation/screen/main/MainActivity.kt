@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager,
             R.id.content
         )
-        App.INCTANCE.router.newRootScreen(Screen.AuthViewScreen())
+        App.INCTANCE.router.newRootScreen(Screen.SpalshScreen())
     }
 
     override fun onResume() {
