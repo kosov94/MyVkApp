@@ -1,14 +1,15 @@
-package com.example.myvkapp.fragment.auth
+package com.example.myvkapp.presentation.screen.auth
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.myvkapp.R
-import com.example.myvkapp.fragment.BaseFragment
+import com.example.myvkapp.presentation.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_auth.*
 
-class AuthViewFragment : BaseFragment(R.layout.fragment_auth), AuthView {
+class AuthViewFragment : BaseFragment(R.layout.fragment_auth),
+    AuthView {
     @InjectPresenter
     lateinit var presenter: AuthViewPresenter
 

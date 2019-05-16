@@ -1,9 +1,11 @@
-package com.example.myvkapp
+package com.example.myvkapp.presentation.screen.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.myvkapp.navigation.Navigator
-import com.example.myvkapp.navigation.Screen
+import com.example.myvkapp.App
+import com.example.myvkapp.R
+import com.example.myvkapp.presentation.navigation.Navigator
+import com.example.myvkapp.presentation.navigation.Screen
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +17,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        navigator = Navigator(this, supportFragmentManager, R.id.content)
+        navigator = Navigator(
+            this,
+            supportFragmentManager,
+            R.id.content
+        )
         App.INCTANCE.router.newRootScreen(Screen.AuthViewScreen())
     }
 

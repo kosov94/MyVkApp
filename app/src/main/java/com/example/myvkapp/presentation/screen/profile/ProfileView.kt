@@ -1,8 +1,7 @@
-package com.example.myvkapp.fragment.profile
+package com.example.myvkapp.presentation.screen.profile
 
 import com.arellomobile.mvp.MvpView
-import com.example.myvkapp.fragment.profile.message.BaseMessage
-import java.util.*
+import com.example.myvkapp.presentation.screen.profile.message.BaseMessage
 
 interface ProfileView : MvpView {
     fun showProfile(firstName: String, birthday: String, city: String)

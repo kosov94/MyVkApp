@@ -1,4 +1,4 @@
-package com.example.myvkapp.navigation
+package com.example.myvkapp.presentation.navigation
 
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager

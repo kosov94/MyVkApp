@@ -1,4 +1,4 @@
-package com.example.myvkapp.fragment.auth
+package com.example.myvkapp.presentation.screen.auth
 
 import com.arellomobile.mvp.MvpView
 

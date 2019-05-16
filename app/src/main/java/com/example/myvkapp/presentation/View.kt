@@ -1,4 +1,4 @@
-package com.example.myvkapp.common
+package com.example.myvkapp.presentation
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

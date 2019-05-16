@@ -1,4 +1,4 @@
-package com.example.myvkapp.fragment.profile
+package com.example.myvkapp.presentation.screen.profile
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myvkapp.R
-import com.example.myvkapp.common.loadImage
-import com.example.myvkapp.fragment.profile.message.BaseMessage
-import com.example.myvkapp.fragment.profile.message.CatMessage
-import com.example.myvkapp.fragment.profile.message.PostMessage
-import com.example.myvkapp.fragment.profile.message.TextMessage
+import com.example.myvkapp.presentation.loadImage
+import com.example.myvkapp.presentation.screen.profile.message.BaseMessage
+import com.example.myvkapp.presentation.screen.profile.message.CatMessage
+import com.example.myvkapp.presentation.screen.profile.message.PostMessage
+import com.example.myvkapp.presentation.screen.profile.message.TextMessage
 import kotlinx.android.synthetic.main.item_post_message.view.*
 import kotlinx.android.synthetic.main.item_text_message.view.*
 import java.lang.IllegalArgumentException

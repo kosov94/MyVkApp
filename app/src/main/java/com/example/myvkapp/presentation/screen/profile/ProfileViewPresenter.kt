@@ -1,11 +1,11 @@
-package com.example.myvkapp.fragment.profile
+package com.example.myvkapp.presentation.screen.profile
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.myvkapp.App
-import com.example.myvkapp.fragment.profile.message.CatMessage
-import com.example.myvkapp.fragment.profile.message.PostMessage
-import com.example.myvkapp.navigation.Screen
+import com.example.myvkapp.presentation.screen.profile.message.CatMessage
+import com.example.myvkapp.presentation.screen.profile.message.PostMessage
+import com.example.myvkapp.presentation.navigation.Screen
 
 @InjectViewState
 class ProfileViewPresenter : MvpPresenter<ProfileView>() {

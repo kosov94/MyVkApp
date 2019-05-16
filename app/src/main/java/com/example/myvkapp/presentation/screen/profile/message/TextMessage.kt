@@ -1,4 +1,4 @@
-package com.example.myvkapp.fragment.profile.message
+package com.example.myvkapp.presentation.screen.profile.message
 
 class TextMessage(
     id: Int,
