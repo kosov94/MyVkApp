@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.myvkapp.R
 import com.example.myvkapp.presentation.common.BaseFragment
-import com.example.myvkapp.presentation.screen.profile.message.BaseMessage
+import com.example.myvkapp.presentation.common.BaseMessage
+import com.example.myvkapp.presentation.loadImage
+import com.example.myvkapp.presentation.model.Profile
+import com.example.myvkapp.presentation.screen.profile.message.FeedAdapter
 import kotlinx.android.synthetic.main.fragment_profile_view.*
 
 class ProfileViewFragment : BaseFragment(R.layout.fragment_profile_view),
@@ -29,8 +32,9 @@ class ProfileViewFragment : BaseFragment(R.layout.fragment_profile_view),
         profileViewFeed.adapter = feedAdapter
     }
 
-    override fun showProfile(firstName: String, birthday: String, city: String) {
-        profileViewCollapsingToolbar.title=firstName
+    override fun showProfile(profile: Profile) {
+        profileViewCollapsingToolbar.title="${profile.lastName} ${profile.firstName}"
+        profileViewAvatar.loadImage(profile.avatar)
     }
 
     override fun showFeed(items: List<BaseMessage>) {

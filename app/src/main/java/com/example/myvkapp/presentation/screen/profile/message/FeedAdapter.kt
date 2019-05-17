@@ -1,4 +1,4 @@
-package com.example.myvkapp.presentation.screen.profile
+package com.example.myvkapp.presentation.screen.profile.message
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,56 +6,35 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myvkapp.R
+import com.example.myvkapp.presentation.common.BaseMessage
 import com.example.myvkapp.presentation.loadImage
-import com.example.myvkapp.presentation.screen.profile.message.BaseMessage
-import com.example.myvkapp.presentation.screen.profile.message.CatMessage
-import com.example.myvkapp.presentation.screen.profile.message.PostMessage
-import com.example.myvkapp.presentation.screen.profile.message.TextMessage
+import com.example.myvkapp.presentation.model.Post
 import kotlinx.android.synthetic.main.item_post_message.view.*
 import kotlinx.android.synthetic.main.item_text_message.view.*
 import java.lang.IllegalArgumentException
 
 class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
-        const val POST_MESSAGE = 1
+        const val MESSAGE = 1
         const val CAT_MESSAGE = 2
-        const val TEXT_MESSAGE = 3
     }
 
     private val items: MutableList<BaseMessage> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = when (viewType) {
-        POST_MESSAGE -> PostMessageHolder(
+        MESSAGE -> FeedPostHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_post_message,
+                R.layout.item_message,
                 parent,
                 false
             )
         )
-
-        CAT_MESSAGE -> CatHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_cat_message,
-                parent,
-                false
-            )
-        )
-
-        TEXT_MESSAGE -> TextHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_text_message,
-                parent,
-                false
-            )
-        )
-
         else -> throw IllegalArgumentException("viewType $viewType not found")
     }
 
     override fun getItemViewType(position: Int): Int = when (items[position]) {
-        is PostMessage -> POST_MESSAGE
         is CatMessage -> CAT_MESSAGE
-        is TextMessage -> TEXT_MESSAGE
+        is Post -> MESSAGE
 
         else -> throw IllegalArgumentException("${items[position].javaClass} not found")
     }
@@ -64,9 +43,9 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is PostMessageHolder -> holder.bind(items[position] as PostMessage)
+            is FeedPostHolder -> holder.bind(items[position] as Post)
             is CatHolder -> holder.bind(items[position] as CatMessage)
-            is TextHolder -> holder.bind(items[position] as TextMessage)
+
         }
     }
 
@@ -77,25 +56,10 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class PostMessageHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(data: PostMessage) {
-            itemView.itemPostMessage.text = data.message
-
-            if (data.image.isNotEmpty()) {
-                itemView.itemPostImage.loadImage(data.image)
-            }
-        }
-    }
 
     inner class CatHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(data: CatMessage) {
             (itemView as ImageView).loadImage(data.image)
-        }
-    }
-
-    inner class TextHolder(view: View): RecyclerView.ViewHolder(view){
-        fun bind(data: TextMessage){
-            itemView.itemTextMessage.text = data.message
         }
     }
 }

@@ -3,9 +3,10 @@ package com.example.myvkapp.presentation.screen.profile
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.myvkapp.App
-import com.example.myvkapp.presentation.screen.profile.message.CatMessage
-import com.example.myvkapp.presentation.screen.profile.message.PostMessage
+import com.example.myvkapp.presentation.model.Post
+import com.example.myvkapp.presentation.model.Profile
 import com.example.myvkapp.presentation.navigation.Screen
+import kotlin.random.Random
 
 @InjectViewState
 class ProfileViewPresenter : MvpPresenter<ProfileView>() {
@@ -13,29 +14,43 @@ class ProfileViewPresenter : MvpPresenter<ProfileView>() {
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        viewState.showProfile("Vitya", "22.11.1994","Tomsk")
+        viewState.showProfile(Profile(
+            12345,
+            "Victor",
+            "Kosovskikh",
+            "https://pp.userapi.com/c623131/v623131993/518a3/skgbiwHUrEw.jpg"
+        ))
 
-        viewState.showFeed((1..100).map {
-            if (it % 5 == 0) {
-                CatMessage(
+        viewState.showFeed((1..3).map {
+            listOf(
+                Post(
                     it,
-                    "https://ichef.bbci.co.uk/images/ic/720x405/p0517py6.jpg"
-                )
-            } else {
-                PostMessage(
+                    "Massage",
+                    "",
+                    Random.nextInt(0, 100)
+                ),
+                Post(
                     it,
-                    "Message".repeat(30),
-                    "https://picsum.photos/id/$it/200/300"
+                    "",
+                    "https://picsum.photos/id/$it/200/300",
+                    Random.nextInt(0, 100)
+                ),
+                Post(
+                    it,
+                    "Message",
+                    "https://picsum.photos/id/$it/200/300",
+                    Random.nextInt(0, 100)
                 )
-            }
-        })
+            )
+        }.flatten())
+
     }
 
     fun logout() {
         App.INCTANCE.router.newRootScreen(Screen.AuthViewScreen())
     }
 
-    fun profileEdit(){
+    fun profileEdit() {
         App.INCTANCE.router.navigateTo(Screen.ProfileEditScreen())
     }
 
