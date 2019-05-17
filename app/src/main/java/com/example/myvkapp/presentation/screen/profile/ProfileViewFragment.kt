@@ -30,9 +30,7 @@ class ProfileViewFragment : BaseFragment(R.layout.fragment_profile_view),
     }
 
     override fun showProfile(firstName: String, birthday: String, city: String) {
-        profileViewFirstName.text = firstName
-        profileViewBirthday.text = birthday
-        profileViewCity.text = city
+        profileViewCollapsingToolbar.title=firstName
     }
 
     override fun showFeed(items: List<BaseMessage>) {
