@@ -2,14 +2,15 @@ package com.example.myvkapp.presentation.screen.profile
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.example.myvkapp.App
 import com.example.myvkapp.presentation.model.Post
 import com.example.myvkapp.presentation.model.Profile
 import com.example.myvkapp.presentation.navigation.Screen
+import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 import kotlin.random.Random
 
 @InjectViewState
-class ProfileViewPresenter : MvpPresenter<ProfileView>() {
+class ProfileViewPresenter  @Inject constructor(private val router: Router) : MvpPresenter<ProfileView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -47,11 +48,11 @@ class ProfileViewPresenter : MvpPresenter<ProfileView>() {
     }
 
     fun logout() {
-        App.INCTANCE.router.newRootScreen(Screen.AuthViewScreen())
+        router.newRootScreen(Screen.AuthViewScreen())
     }
 
     fun profileEdit() {
-        App.INCTANCE.router.navigateTo(Screen.ProfileEditScreen())
+        router.navigateTo(Screen.ProfileEditScreen())
     }
 
 

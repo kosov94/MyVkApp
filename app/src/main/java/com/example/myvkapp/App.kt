@@ -1,28 +1,12 @@
 package com.example.myvkapp
 
-import android.app.Application
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
+import com.example.myvkapp.dagger.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
-class App : Application() {
+class App : DaggerApplication() {
 
-    companion object {
-        lateinit var INCTANCE: App
-    }
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+        DaggerAppComponent.factory().create(this)
 
-    private lateinit var cicerone: Cicerone<Router>
-
-    val router: Router
-        get() = cicerone.router
-
-    val navigatorHolder: NavigatorHolder
-        get() = cicerone.navigatorHolder
-
-    override fun onCreate() {
-        super.onCreate()
-
-        INCTANCE = this
-        cicerone = Cicerone.create()
-    }
 }

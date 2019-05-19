@@ -7,10 +7,8 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myvkapp.R
 import com.example.myvkapp.presentation.common.BaseMessage
-import com.example.myvkapp.presentation.loadImage
+import com.example.myvkapp.presentation.common.loadImage
 import com.example.myvkapp.presentation.model.Post
-import kotlinx.android.synthetic.main.item_post_message.view.*
-import kotlinx.android.synthetic.main.item_text_message.view.*
 import java.lang.IllegalArgumentException
 
 class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

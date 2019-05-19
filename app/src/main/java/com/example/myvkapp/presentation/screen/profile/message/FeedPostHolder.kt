@@ -2,7 +2,7 @@ package com.example.myvkapp.presentation.screen.profile.message
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myvkapp.presentation.loadImage
+import com.example.myvkapp.presentation.common.loadImage
 import com.example.myvkapp.presentation.model.Post
 import kotlinx.android.synthetic.main.item_message.view.*
 
