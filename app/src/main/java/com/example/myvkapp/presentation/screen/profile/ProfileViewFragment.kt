@@ -41,10 +41,11 @@ class ProfileViewFragment : BaseFragment(R.layout.fragment_profile_view),
     override fun showProfile(profile: Profile) {
         profileViewCollapsingToolbar.title="${profile.lastName} ${profile.firstName}"
         profileViewAvatar.loadImage(profile.avatar)
+        feedAdapter.setProfile(profile)
     }
 
     override fun showFeed(items: List<BaseMessage>) {
-        feedAdapter.setItems(items)
+        feedAdapter.setPosts(items)
     }
 
     private fun initToolbar() {

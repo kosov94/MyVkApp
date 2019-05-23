@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/FeedCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/profileImageStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/profile_card_margin_start"
+            android:layout_marginTop="@dimen/profile_card_margin_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_info_black_24dp" />
+
+        <TextView
+            android:id="@+id/profileTextViewStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/profile_card_margin_start"
+            app:layout_constraintBottom_toBottomOf="@id/profileImageStatus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/profileImageStatus"
+            app:layout_constraintTop_toTopOf="@id/profileImageStatus"
+            tools:text="Status" />
+
+        <ImageView
+            android:id="@+id/profileImageCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/profile_card_margin_start"
+            android:layout_marginTop="@dimen/profile_card_margin_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileTextViewStatus"
+            app:srcCompat="@drawable/ic_location_city_24dp" />
+
+        <TextView
+            android:id="@+id/profileTextViewCity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/profile_card_margin_start"
+            app:layout_constraintBottom_toBottomOf="@id/profileImageCity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/profileImageCity"
+            app:layout_constraintTop_toTopOf="@id/profileImageCity"
+            tools:text="Tomsk" />
+
+        <ImageView
+            android:id="@+id/profileImagePhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/profile_card_margin_start"
+            android:layout_marginTop="@dimen/profile_card_margin_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileTextViewCity"
+            app:srcCompat="@drawable/ic_phone_24dp" />
+
+        <TextView
+            android:id="@+id/profileTextViewPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/profile_card_margin_start"
+            app:layout_constraintBottom_toBottomOf="@id/profileImagePhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/profileImagePhone"
+            app:layout_constraintTop_toTopOf="@id/profileImagePhone"
+            tools:text="8-999-495-46-90" />
+
+        <ImageView
+            android:id="@+id/profileImageBirthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/profile_card_margin_start"
+            android:layout_marginTop="@dimen/profile_card_margin_top"
+            android:paddingBottom="@dimen/profile_card_margin_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileTextViewPhone"
+            app:srcCompat="@drawable/ic_date_24dp" />
+
+        <TextView
+            android:id="@+id/profileTextViewBirthday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/profile_card_margin_start"
+            app:layout_constraintBottom_toBottomOf="@id/profileImageBirthday"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/profileImageBirthday"
+            app:layout_constraintTop_toTopOf="@id/profileImageBirthday"
+            tools:text="22.11.1994" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

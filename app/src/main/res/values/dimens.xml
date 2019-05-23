@@ -2,4 +2,6 @@
 <resources>
     <dimen name="splash_screen_logo_size">96dp</dimen>
     <dimen name="profile_toolbar_height">240dp</dimen>
+    <dimen name="profile_card_margin_top">8dp</dimen>
+    <dimen name="profile_card_margin_start">8dp</dimen>
 </resources>
