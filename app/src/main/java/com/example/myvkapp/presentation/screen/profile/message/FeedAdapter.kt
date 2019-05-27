@@ -22,32 +22,21 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items: MutableList<BaseMessage> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = when (viewType) {
-        MESSAGE -> FeedPostHolder(
-                LayoutInflater.from(parent.context).inflate(
-                        R.layout.item_message,
-                        parent,
-                        false
-                ))
-        PROFILE_POST -> FeedProfileHolder(
-                LayoutInflater.from(parent.context).inflate(
-                        R.layout.item_profile,
-                        parent,
-                        false
-                ))
+        MESSAGE -> FeedPostHolder.createInstance(parent)
+        PROFILE_POST -> FeedProfileHolder.createInstance(parent)
 
         else -> throw IllegalArgumentException("viewType $viewType not found")
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0)
-            return PROFILE_POST
-        else
-            return when (items[position]) {
-                is CatMessage -> CAT_MESSAGE
-                is Post -> MESSAGE
 
-                else -> throw IllegalArgumentException("${items[position].javaClass} not found")
-            }
+        return when (items[position]) {
+            is CatMessage -> CAT_MESSAGE
+            is Post -> MESSAGE
+            is Profile -> PROFILE_POST
+
+            else -> throw IllegalArgumentException("${items[position].javaClass} not found")
+        }
     }
 
     override fun getItemCount(): Int = items.size
@@ -68,11 +57,11 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setProfile(profile: Profile){
-        if(items.isEmpty())
+    fun setProfile(profile: Profile) {
+        if (items.isEmpty())
             items.add(profile)
         else
-            this.items[0]=profile
+            this.items[0] = profile
         notifyItemChanged(0)
     }
 
