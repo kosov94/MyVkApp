@@ -1,7 +1,8 @@
 package com.example.myvkapp.domain.repository
 
-import com.example.myvkapp.presentation.model.Profile
+import com.example.myvkapp.domain.entity.UserEntity
+import io.reactivex.Single
 
 interface ProfileRepository {
-    fun getProfile(): Profile
+    fun getProfile(): Single<UserEntity>
 }

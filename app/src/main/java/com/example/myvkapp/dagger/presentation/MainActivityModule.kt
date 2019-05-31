@@ -1,5 +1,6 @@
-package com.example.myvkapp.dagger
+package com.example.myvkapp.dagger.presentation
 
+import com.example.myvkapp.dagger.FragmentScope
 import com.example.myvkapp.presentation.screen.auth.AuthViewFragment
 import com.example.myvkapp.presentation.screen.profile.ProfileViewFragment
 import com.example.myvkapp.presentation.screen.profileEdit.ProfileEditViewFragment

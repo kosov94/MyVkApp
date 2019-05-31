@@ -1,6 +1,6 @@
 package com.example.myvkapp.domain.entity
 
-data class User (
+data class UserEntity (
         val id: Int,
         val firstName: String,
         val lastName: String,

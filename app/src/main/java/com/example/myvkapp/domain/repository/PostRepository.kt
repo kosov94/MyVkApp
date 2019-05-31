@@ -1,9 +1,9 @@
 package com.example.myvkapp.domain.repository
 
-import com.example.myvkapp.presentation.common.BaseMessage
+import com.example.myvkapp.domain.entity.PostEntity
+import io.reactivex.Single
 
 interface PostRepository {
-    fun getAll(): List<BaseMessage>
+    fun getPosts(page: Int): Single<List<PostEntity>>
 
-    fun getPost(id: Long): BaseMessage
 }

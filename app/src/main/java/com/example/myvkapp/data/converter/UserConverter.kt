@@ -1,11 +1,11 @@
 package com.example.myvkapp.data.converter
 
 import com.example.myvkapp.data.response.ProfileResponse
-import com.example.myvkapp.domain.entity.User
+import com.example.myvkapp.domain.entity.UserEntity
 import javax.inject.Inject
 
-class UserConverter @Inject constructor() : Converter<ProfileResponse, User> {
-    override fun convertTo(t: ProfileResponse): User = User(
+class UserConverter @Inject constructor() : DataConverter<ProfileResponse, UserEntity> {
+    override fun convert(t: ProfileResponse): UserEntity = UserEntity(
             t.id,
             t.firstName,
             t.lastName,

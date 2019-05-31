@@ -1,36 +1,23 @@
 package com.example.myvkapp.data.repository
 
+import com.example.myvkapp.data.converter.DataConverter
+import com.example.myvkapp.data.dataSource.PostDataSource
+import com.example.myvkapp.data.response.PostsResponse
+import com.example.myvkapp.domain.entity.PostEntity
 import com.example.myvkapp.domain.repository.PostRepository
-import com.example.myvkapp.presentation.common.BaseMessage
-import com.example.myvkapp.presentation.model.Post
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
-import kotlin.random.Random
 
-class PostRepositoryImpl @Inject constructor() : PostRepository {
-    override fun getAll(): List<Post> =(1..3).map {
-        listOf(
-            Post(
-                it,
-                "Massage",
-                "",
-                Random.nextInt(0, 100)
-            ),
-            Post(
-                it,
-                "",
-                "https://picsum.photos/id/$it/200/300",
-                Random.nextInt(0, 100)
-            ),
-            Post(
-                it,
-                "Message",
-                "https://picsum.photos/id/$it/200/300",
-                Random.nextInt(0, 100)
-            )
-        )
-    }.flatten()
+class PostRepositoryImpl @Inject constructor(
+        private val postDataSource: PostDataSource,
+        private val postsConverter: DataConverter<PostsResponse, List<PostEntity>>
+) : PostRepository {
 
-    override fun getPost(id: Long): BaseMessage {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getPosts(page: Int): Single<List<PostEntity>> =
+            postDataSource.getPosts(page)
+                    .subscribeOn(Schedulers.io())
+                    .map(postsConverter::convert)
+
+
 }
