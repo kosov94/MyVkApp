@@ -15,6 +15,7 @@
             android:id="@+id/profileViewCollapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/profile_toolbar_height"
+            app:contentScrim="@color/colorPrimary"
             app:collapsedTitleTextAppearance="@style/ToolbarTitle"
             app:expandedTitleTextAppearance="@style/ToolbarTitle.Expanded"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -24,10 +25,9 @@
                 android:id="@+id/profileViewAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/vk_anonim_avatar"
-                app:layout_collapseMode="parallax" />
+                />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/profileViewToolbar"
