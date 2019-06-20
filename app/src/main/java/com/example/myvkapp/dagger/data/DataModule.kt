@@ -1,5 +1,8 @@
 package com.example.myvkapp.dagger.data
 
+import android.content.Context
+import android.content.SharedPreferences
+import com.example.myvkapp.App
 import com.example.myvkapp.data.dataSource.*
 import com.example.myvkapp.data.repository.PostRepositoryImpl
 import com.example.myvkapp.data.repository.ProfileRepositoryImpl
@@ -9,6 +12,7 @@ import com.example.myvkapp.domain.repository.ProfileRepository
 import com.example.myvkapp.domain.repository.SessionRepository
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.Reusable
 
 @Module(
@@ -16,28 +20,44 @@ import dagger.Reusable
         NetworkModule::class,
         ConverterModule::class
     ])
-interface DataModule {
-    @Reusable
-    @Binds
-    fun bindSessionRepository(instance: SessionRepositoryImpl): SessionRepository
+abstract class DataModule {
+
+    @Module
+    companion object {
+
+        @JvmStatic
+        @Reusable
+        @Provides
+        fun provideSharedPreferences(app: App): SharedPreferences =
+                app.getSharedPreferences("CommonSharedPreferences", Context.MODE_PRIVATE)
+
+    }
 
     @Reusable
     @Binds
-    fun bindPostRepository(instance: PostRepositoryImpl): PostRepository
+    abstract fun bindSessionDataSource(instance: SessionDataSourceImpl): SessionDataSource
 
     @Reusable
     @Binds
-    fun bindSProfileRepository(instance: ProfileRepositoryImpl): ProfileRepository
+    abstract fun bindSessionRepository(instance: SessionRepositoryImpl): SessionRepository
 
     @Reusable
     @Binds
-    fun bindProfileDataSource(instance: ProfileDataSourceImpl): ProfileDataSource
+    abstract fun bindPostRepository(instance: PostRepositoryImpl): PostRepository
 
     @Reusable
     @Binds
-    fun bindAuthDataSource(instance: AuthDataSourceImpl): AuthDataSource
+    abstract fun bindSProfileRepository(instance: ProfileRepositoryImpl): ProfileRepository
 
     @Reusable
     @Binds
-    fun bindPostsDataSourse(instance: PostDataSourceImpl): PostDataSource
+    abstract fun bindProfileDataSource(instance: ProfileDataSourceImpl): ProfileDataSource
+
+    @Reusable
+    @Binds
+    abstract fun bindAuthDataSource(instance: AuthDataSourceImpl): AuthDataSource
+
+    @Reusable
+    @Binds
+    abstract fun bindPostsDataSourse(instance: PostDataSourceImpl): PostDataSource
 }

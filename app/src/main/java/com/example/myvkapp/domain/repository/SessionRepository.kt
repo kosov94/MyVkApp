@@ -9,4 +9,6 @@ interface SessionRepository {
 
     fun isAuth(): Boolean
 
+    fun logout()
+
 }

@@ -27,54 +27,61 @@ class ProfileViewPresenter @Inject constructor(
 ) : MvpPresenter<ProfileView>() {
 
     private val paginator = Paginator(
-            {
-                postRepository.getPosts(it)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .doFinally { viewState.hideProgress() }
-            },
-            object : Paginator.ViewController<PostEntity> {
-                override fun showEmptyProgress(show: Boolean) {
-                    viewState.showProgress()
-                }
-
-                override fun showEmptyError(show: Boolean, error: Throwable?) {
-                    viewState.showError()
-                }
-
-                override fun showEmptyView(show: Boolean) {
-
-                }
-
-                override fun showData(show: Boolean, data: List<PostEntity>) {
-                    viewState.showFeed(
-                            data.map { feedPostConvertor.convert(it) }
-                    )
-                }
-
-                override fun showErrorMessage(error: Throwable) {
-                    viewState.showError()
-                }
-
-                override fun showRefreshProgress(show: Boolean) {
-                    viewState.showProgress()
-                }
-
-                override fun showPageProgress(show: Boolean) {
-                    viewState.showProgress()
-                }
+        {
+            postRepository.getPosts(it)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doFinally { viewState.hideProgress() }
+        },
+        object : Paginator.ViewController<PostEntity> {
+            override fun showEmptyProgress(show: Boolean) {
+                viewState.showProgress()
             }
+
+            override fun showEmptyError(show: Boolean, error: Throwable?) {
+                viewState.showError()
+            }
+
+            override fun showEmptyView(show: Boolean) {
+
+            }
+
+            override fun showData(show: Boolean, data: List<PostEntity>) {
+                viewState.showFeed(
+                    data.map { feedPostConvertor.convert(it) })
+            }
+
+            override fun showErrorMessage(error: Throwable) {
+                viewState.showError()
+            }
+
+            override fun showRefreshProgress(show: Boolean) {
+                viewState.showProgress()
+            }
+
+            override fun showPageProgress(show: Boolean) {
+                viewState.showProgress()
+            }
+        }
     )
 
 
     override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
+        /*super.onFirstViewAttach()
+        paginator.refresh()*/
+        setExampleData()
+        paginator.refresh()
+    }
 
+    override fun attachView(view: ProfileView?) {
+        super.attachView(view)
         setExampleData()
     }
 
     private fun setExampleData() {
+        viewState.showProgress()
         profileRepository.getProfile()
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally(viewState::hideProgress)
             .subscribe(
                 { viewState.showProfile(profileConverter.convert(it)) },
                 { viewState.showError() })
@@ -89,11 +96,11 @@ class ProfileViewPresenter @Inject constructor(
         router.navigateTo(Screen.ProfileEditScreen())
     }
 
-    fun refreshPaginator(){
+    fun refreshPaginator() {
         paginator.refresh()
     }
 
-    fun loadPaginator(){
+    fun loadPaginator() {
         paginator.loadNewPage()
     }
 

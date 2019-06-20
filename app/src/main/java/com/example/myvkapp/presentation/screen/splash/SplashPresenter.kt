@@ -5,7 +5,11 @@ import com.arellomobile.mvp.InjectViewState
 import com.example.myvkapp.domain.repository.SessionRepository
 import com.example.myvkapp.presentation.common.BasePresenter
 import com.example.myvkapp.presentation.navigation.Screen
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import ru.terrakok.cicerone.Router
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -17,15 +21,17 @@ class SplashPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        Handler().postDelayed({
-            router.newRootScreen(
-                if (sessionRepository.isAuth()) {
-                    Screen.ProfileViewScreen()
-                } else {
-                    Screen.AuthViewScreen()
-                }
-            )
-        }, 2000)
-
+        Completable.timer(2, TimeUnit.SECONDS)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                router.newRootScreen(
+                    if (sessionRepository.isAuth()) {
+                        Screen.ProfileViewScreen()
+                    } else {
+                        Screen.AuthViewScreen()
+                    }
+                )
+            }, {})
     }
 }
